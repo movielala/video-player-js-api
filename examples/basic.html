@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MovieLaLa VideoPlayer JavaScript API</title>
+
+    <script>
+      window.MLLVPConfig = {
+        host: 'http://embed.local.movielala.com/'
+      };
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jschannel/1.0.0-git-commit1-8c4f7eb/jschannel.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/q.js/1.2.0/q.min.js"></script>
+    <script src="../src/mllvp.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+    <script src="../src/angular-mllvp.js"></script>
+
+    <script src="https://fb.me/react-0.13.1.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.1.js"></script>
+    <script src="../src/react-mllvp.js"></script>
+    
+    <!-- AngularJS Code -->
+    <script>
+
+      (function (window) {
+
+        var document = window.document;
+
+        var app = angular.module('MLLVPExample', ['ngMLLVP']);
+
+        /*
+          
+        */
+        app.controller('ExampleController', [
+          '$scope',
+          function ($scope) {
+
+            $scope.videos = [
+              {
+                name: 'The Last Buddy Cop Movie',
+                id: 'W85izIsBedM'
+              },
+              {
+                name: 'Welcome To Hell',
+                id: '9yp5p8dabxw'
+              },
+              {
+                name: 'Planking',
+                id: 'vLfAtCbE_Jc'
+              }
+            ];
+
+            $scope.setup = {
+              load: '9yp5p8dabxw'
+            };
+
+          }
+        ]);
+
+        angular.element(document).ready(function () {
+
+          angular.bootstrap(document.getElementById('angular-frame'), [app.name]);
+
+        });
+
+      }(this));
+
+    </script>
+
+    <!-- React Code -->
+    <script type="text/jsx">
+      
+      (function (window) {
+
+        var MLLVP = React.createClass({
+          render: function () {
+            return (
+              <mllvp></mllvp>
+            );
+          }
+        });
+
+        React.render(
+          <MLLVP />,
+          document.getElementById('react-frame')
+        );
+
+      }());
+
+    </script>
+  </head>
+  <body>
+
+    <!--<h1>Without Frameworks</h1>
+
+    <div id="pure-frame">
+      <div id="myPlayer"></div>
+      <script>
+
+        var player = MLLVP.Player('myPlayer', {
+          load: '9yp5p8dabxw'
+        });
+      
+      </script>
+    </div>-->
+
+    <h1>AngularJS</h1>
+
+    <div id="angular-frame" ng-controller="ExampleController">
+
+      <mllvp setup="setup" player="player"></mllvp>
+
+      <div>
+        <h2>Video Info</h2>
+        <ul>
+          <li>Now Playing: {{player.currentVideo.name}}</li>
+          <li>Duration: {{player.currentVideo.duration}}</li>
+          <li>Current Time: {{player.currentVideo.currentTime}}</li>
+        </ul>
+        
+        <h2>Player Controls</h2>
+        <button ng-click="player.play()">Play</button>
+        <button ng-click="player.pause()">Pause</button>
+        <button ng-click="player.stop()">Stop</button>
+        <button ng-click="player.seek('25%')">Seek to 25%</button>
+        <button ng-click="player.seek('50%')">Seek to 50%</button>
+        <button ng-click="player.seek('75%')">Seek to 75%</button>
+        <h2>Video Selector</h2>
+        <ul>
+          <li ng-repeat="video in videos">
+            <a href="#" ng-click="player.loadVideo(video.id)">{{video.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>React</h1>
+
+    <div id="react-frame">
+
+    </div>
+
+  </body>
+</html>
