@@ -24,3 +24,9 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 </script>
 ```
+
+### Viewing Your Website with MovieLaLa Video Player
+
+If you want to see what your page will look like after you make the change above, you can install Tempermonkey and the following script on your Chrome to preview changes:
+- [Tempermonkey Extension for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+- [MovieLaLa IFrame API Replacer Script](https://github.com/movielala/video-player-js-api/raw/master/iframe_api-replacer.user.js)
