@@ -3,7 +3,7 @@ JavaScript API for MovieLaLa Video Player
 
 ## For YouTube IFrame API Users
 
-We have a drop in replacement solution for users who already have an existing YouTube IFrame API implementation. All you have to do is replace the URL of IFrame API.
+We have a drop in replacement for users who already have an existing YouTube IFrame API implementation. All you have to do is replace the URL of IFrame API.
 
 Find your original YouTube IFrame API loading code:
 ```html
