@@ -1,0 +1,31 @@
+{
+  "name": "video-player-js-api",
+  "version": "1.0.0",
+  "description": "JavaScript API for MovieLaLa Video Player",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://alicanc@github.com/movielala/video-player-js-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/movielala/video-player-js-api/issues"
+  },
+  "homepage": "https://github.com/movielala/video-player-js-api",
+  "devDependencies": {
+    "gulp": "git://github.com/gulpjs/gulp.git#4.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-uglifyjs": "^0.6.1"
+  }
+}

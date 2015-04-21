@@ -2,6 +2,8 @@
 
   var document = window.document;
 
+  console.log('Hello!', document.currentScript);
+
   /*
     Helpers
   */
@@ -43,56 +45,13 @@
   };
 
   /*
-    HTML5 Web Messaging
-  */
-
-  var onMessage = function (event) {
-    console.log('Got message', event);
-  };
-
-  window.addEventListener('message', onMessage);
-
-  /*var YT = {};
-
-  YT.parseUrl = function parseUrl(url) {
-
-
-
-  };
-
-  YT.convertLoadArguments = function convertLoadArguments(id, start, isUrl) {
-
-    var end;
-
-    if (typeof id === 'object') {
-
-      var ytOptions = id;
-
-      id = isUrl ? parseYtUrl(ytOptions.mediaContentUrl) : ytOptions.videoId;
-      start = ytOptions.startSeconds;
-      end = ytOptions.endSeconds;
-
-    }
-
-    var args = [
-      id,
-      {
-        start: start,
-        end: end
-      }
-    ];
-
-    return args;
-
-  };*/
-
-  /*
     MLLVP
   */
   
   var MLLVP = window.MLLVP = window.MLLVP || {};
   
   MLLVP.config = _.assign({
+    ytWrapper: true,
     host: 'https://embed.movielala.com/',
     channelScope: 'mllvp'
   }, window.MLLVPConfig || {});
@@ -126,9 +85,9 @@
     this.frame.frameBorder = 0;
 
     // Should we load or cue a video?
-    if (options.cue) {
+    if (this.options.cue) {
       this.cueVideo.call(this, options.cue);
-    } else if (options.load) {
+    } else if (this.options.load) {
       this.loadVideo.call(this, options.load);
     }
 
@@ -145,6 +104,9 @@
     //iframe.src = MLLVP.config.host + '/embed/' + 
 
   };
+
+  Player.states = ['NOTREADY', 'IDLE', 'BUFFERING', 'PLAYING'];
+  Player.events = ['ready', 'stateChange', 'desiredStateChange', 'time', 'seek'];
 
   Player.prototype.loadVideo = function loadVideo(id, options) {
 
@@ -247,45 +209,5 @@
   Player.prototype.getCurrentTime = function getCurrentTime() {
 
   };
-
-  /*
-    MLLVP.Player YouTube IFrame API Methods
-  */
-
-  /*Player.prototype.loadVideoById = function loadVideoById(id, start) {
-
-    return this.loadVideo.apply(this, YT.convertLoadArguments(id, start));
-
-  };
-
-  Player.prototype.cueVideoById = function cueVideoById(id, start) {
-
-    return this.cueVideo.apply(this, YT.convertLoadArguments(id, start));
-
-  };
-
-  Player.prototype.loadVideoByUrl = function loadVideoByUrl(url, start) {
-
-    return this.loadVideo.apply(this, YT.convertLoadArguments(url, start, true));
-
-  };
-
-  Player.prototype.cueVideoByUrl = function cueVideoByUrl(url, start) {
-
-    return this.cueVideo.apply(this, YT.convertLoadArguments(url, start, true));
-
-  };
-
-  Player.prototype.playVideo = Player.prototype.play;
-
-  Player.prototype.pauseVideo = Player.prototype.pause;
-
-  Player.prototype.stopVideo = Player.prototype.stop;
-
-  Player.prototype.playVideo = Player.prototype.play;
-
-  Player.prototype.seekTo = Player.prototype.seek;
-
-  Player.prototype.unMute = Player.prototype.unmute;*/
 
 }(window, _, Q, Channel));
